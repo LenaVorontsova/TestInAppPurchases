@@ -1,0 +1,78 @@
+{
+  "identifier" : "A0A2E790",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "5F4CA1E0",
+      "localizations" : [
+        {
+          "description" : "Remove all ads in the app",
+          "displayName" : "Remove Ads",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Remove all ads in the app",
+          "displayName" : "Remove Ads",
+          "locale" : "ru"
+        }
+      ],
+      "productID" : "com.myapp.remove",
+      "referenceName" : "Remove Ads",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "A9457FD0",
+      "localizations" : [
+        {
+          "description" : "Get all aspects of the app",
+          "displayName" : "Unlock everything",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Get all aspects of the app",
+          "displayName" : "Unlock everything",
+          "locale" : "ru"
+        }
+      ],
+      "productID" : "com.myapp.everything",
+      "referenceName" : " Everything",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "09A56EFF",
+      "localizations" : [
+        {
+          "description" : "Unlock a pack of gems",
+          "displayName" : "Get Gems",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Unlock a pack of gems",
+          "displayName" : "Get Gems",
+          "locale" : "ru"
+        }
+      ],
+      "productID" : "com.myapp.gems",
+      "referenceName" : "Gems",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

@@ -26,6 +26,7 @@
 		84B7EB93299F9E0400CD4DD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B7EB95299F9E0400CD4DD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B7EB9B299FA68500CD4DD0 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		84B7EB9D299FA91C00CD4DD0 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = Configuration.storekit; path = TestInAppPurchases/Configuration.storekit; sourceTree = "<group>"; };
 		917C663D12BABCA22EC23B52 /* Pods_TestInAppPurchases.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInAppPurchases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7259806E9B572EC2AD2D936 /* Pods-TestInAppPurchases.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInAppPurchases.release.xcconfig"; path = "Target Support Files/Pods-TestInAppPurchases/Pods-TestInAppPurchases.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,6 +55,7 @@
 		84B7EB78299F9E0400CD4DD0 = {
 			isa = PBXGroup;
 			children = (
+				84B7EB9D299FA91C00CD4DD0 /* Configuration.storekit */,
 				84B7EB83299F9E0400CD4DD0 /* TestInAppPurchases */,
 				84B7EB82299F9E0400CD4DD0 /* Products */,
 				2FC97BEC28D5176A66C29904 /* Pods */,

@@ -14,8 +14,8 @@ protocol ReusableView: AnyObject {
 
 final class TableViewCell: UITableViewCell {
     lazy var titleText: UILabel = {
-            var label = UILabel()
-            return label
+        var label = UILabel()
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -31,8 +31,8 @@ final class TableViewCell: UITableViewCell {
         private func configureConstraints() {
             contentView.addSubview(titleText)
             titleText.snp.makeConstraints {
-                $0.top.bottom.equalToSuperview()
-                $0.leading.trailing.equalToSuperview()
+                $0.top.bottom.equalToSuperview().inset(10)
+                $0.leading.trailing.equalToSuperview().inset(20)
             }
         }
 }
