@@ -1,0 +1,6 @@
+framework module Pods_TestInAppPurchases {
+  umbrella header "Pods-TestInAppPurchases-umbrella.h"
+
+  export *
+  module * { export * }
+}
