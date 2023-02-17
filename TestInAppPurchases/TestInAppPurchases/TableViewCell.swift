@@ -15,6 +15,7 @@ protocol ReusableView: AnyObject {
 final class TableViewCell: UITableViewCell {
     lazy var titleText: UILabel = {
         var label = UILabel()
+        label.numberOfLines = 4
         return label
     }()
     

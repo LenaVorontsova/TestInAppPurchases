@@ -51,7 +51,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
                                                        for: indexPath) as? TableViewCell else {
             return UITableViewCell()
         }
-        cell.titleText.text = "Test"
+        let product = models[indexPath.row]
+        cell.titleText.text = "\(product.localizedTitle): \(product.localizedDescription) - \((product.price))\(product.priceLocale.currencySymbol ?? "$")"
         return cell
     }
     
@@ -62,7 +63,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         DispatchQueue.main.async {
-            print("Count: \(response.products)")
+            print("Count: \(response.products.count )")
             self.models = response.products
             self.tableView.reloadData()
         }
