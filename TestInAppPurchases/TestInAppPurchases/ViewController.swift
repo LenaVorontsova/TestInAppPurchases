@@ -24,6 +24,7 @@ class ViewController: UIViewController{
         configureConstrains()
         tableView.delegate = self
         tableView.dataSource = self
+        SKPaymentQueue.default().add(self)
         fetchProducts()
     }
     
@@ -41,7 +42,7 @@ class ViewController: UIViewController{
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate {
+extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
@@ -59,6 +60,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // show purchase
+        let payment = SKPayment(product: models[indexPath.row])
+        SKPaymentQueue.default().add(payment )
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
@@ -73,6 +76,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
         case removeAds = "com.myapp.remove"
         case unlockEverything = "com.myapp.everything"
         case getGems = "com.myapp.gems"
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        // no impl.
+        transactions.forEach({
+            switch $0.transactionState {
+            case .purchasing:
+                print("purchasing")
+            case .purchased:
+                print("purchased")
+                SKPaymentQueue.default().finishTransaction($0)
+            case .failed:
+                print("did not purchase")
+                SKPaymentQueue.default().finishTransaction($0)
+            case .restored:
+                break
+            case .deferred:
+                break
+            @unknown default:
+                break
+            }
+        })
     }
 }
 
