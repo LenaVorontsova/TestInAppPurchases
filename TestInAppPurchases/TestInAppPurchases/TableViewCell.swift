@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+enum ConstCells {
+    static let topAndLeadCell = 20
+    static let sizeImage = 80
+}
 protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
@@ -35,9 +39,16 @@ final class TableViewCell: UITableViewCell {
         
         private func configureConstraints() {
             contentView.addSubview(titleText)
+            contentView.addSubview(imageCell)
             titleText.snp.makeConstraints {
-                $0.top.bottom.equalToSuperview().inset(10)
-                $0.leading.trailing.equalToSuperview().inset(20)
+                $0.top.equalToSuperview().inset(ConstCells.topAndLeadCell)
+                $0.leading.equalTo(imageCell.safeAreaLayoutGuide.snp.trailing).offset(ConstCells.topAndLeadCell)
+                $0.trailing.equalToSuperview().inset(ConstCells.topAndLeadCell)
+            }
+            imageCell.snp.makeConstraints {
+                $0.height.width.equalTo(ConstCells.sizeImage)
+                $0.top.equalToSuperview().inset(ConstCells.topAndLeadCell)
+                $0.leading.equalToSuperview().inset(ConstCells.topAndLeadCell)
             }
         }
 }

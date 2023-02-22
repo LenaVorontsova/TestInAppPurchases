@@ -9,15 +9,17 @@ import UIKit
 import StoreKit
 import SnapKit
 
-class ViewController: UIViewController{
-    private var models = [SKProduct]()
-    
+class ViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TableViewCell.self,
                        forCellReuseIdentifier: TableViewCell.identifier)
         return table
     }()
+    private var models = [SKProduct]()
+    private var images = [UIImage(named: "addBlock"),
+                          UIImage(named: "benefits"),
+                          UIImage(named: "gem")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
         }
         let product = models[indexPath.row]
         cell.titleText.text = "\(product.localizedTitle): \(product.localizedDescription) - \((product.price))\(product.priceLocale.currencySymbol ?? "$")"
+        cell.imageCell.image = images[indexPath.row]
         return cell
     }
     
@@ -62,6 +65,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
         // show purchase
         let payment = SKPayment(product: models[indexPath.row])
         SKPaymentQueue.default().add(payment )
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
