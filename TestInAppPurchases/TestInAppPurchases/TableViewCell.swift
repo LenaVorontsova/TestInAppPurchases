@@ -13,6 +13,10 @@ protocol ReusableView: AnyObject {
 }
 
 final class TableViewCell: UITableViewCell {
+    lazy var imageCell: UIImageView = {
+        var image = UIImageView()
+        return image
+    }()
     lazy var titleText: UILabel = {
         var label = UILabel()
         label.numberOfLines = 4

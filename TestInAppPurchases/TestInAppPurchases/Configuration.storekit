@@ -25,7 +25,7 @@
       "type" : "NonConsumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "1.5",
       "familyShareable" : false,
       "internalID" : "A9457FD0",
       "localizations" : [
@@ -45,7 +45,7 @@
       "type" : "NonConsumable"
     },
     {
-      "displayPrice" : "0.99",
+      "displayPrice" : "0.50",
       "familyShareable" : false,
       "internalID" : "09A56EFF",
       "localizations" : [

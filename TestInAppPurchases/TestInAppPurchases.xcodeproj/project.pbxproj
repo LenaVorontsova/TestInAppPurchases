@@ -76,11 +76,11 @@
 			children = (
 				84B7EB84299F9E0400CD4DD0 /* AppDelegate.swift */,
 				84B7EB88299F9E0400CD4DD0 /* ViewController.swift */,
+				84B7EB9B299FA68500CD4DD0 /* TableViewCell.swift */,
 				84B7EB90299F9E0400CD4DD0 /* Assets.xcassets */,
 				84B7EB92299F9E0400CD4DD0 /* LaunchScreen.storyboard */,
 				84B7EB95299F9E0400CD4DD0 /* Info.plist */,
 				84B7EB8D299F9E0400CD4DD0 /* TestInAppPurchases.xcdatamodeld */,
-				84B7EB9B299FA68500CD4DD0 /* TableViewCell.swift */,
 			);
 			path = TestInAppPurchases;
 			sourceTree = "<group>";
