@@ -9,6 +9,11 @@ import UIKit
 import StoreKit
 import SnapKit
 
+enum ConstViewController {
+    static let bottomTable = 500
+    static let topImage = 10
+}
+
 class ViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -16,6 +21,12 @@ class ViewController: UIViewController {
                        forCellReuseIdentifier: TableViewCell.identifier)
         return table
     }()
+    private lazy var imageAdd: UIImageView = {
+        var image = UIImageView()
+        image.image = UIImage(named: "add")
+        return image
+    }()
+    
     private var models = [SKProduct]()
     private var images = [UIImage(named: "addBlock"),
                           UIImage(named: "benefits"),
@@ -28,12 +39,19 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         SKPaymentQueue.default().add(self)
         fetchProducts()
+        view.backgroundColor = .white
     }
     
     private func configureConstrains() {
         view.addSubview(tableView)
+        view.addSubview(imageAdd)
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(imageAdd.safeAreaLayoutGuide.snp.top).inset(ConstViewController.topImage)
+        }
+        imageAdd.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(0)
         }
     }
     
