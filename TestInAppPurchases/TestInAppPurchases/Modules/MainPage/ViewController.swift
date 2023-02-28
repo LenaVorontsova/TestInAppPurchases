@@ -15,9 +15,10 @@ enum ConstViewController {
     static let gemsImageSize = 100
     static let gemsBottom = 30
     static let addsImageSize = 200
+    static let buttonTop = 60
 }
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TableViewCell.self,
@@ -40,6 +41,14 @@ class ViewController: UIViewController {
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
+    private lazy var nextButton: UIButton = {
+        var button = UIButton()
+        button.layer.cornerRadius = 15
+        button.setTitle("Next page", for: .normal)
+        button.backgroundColor = .blue
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
     
     private var models = [SKProduct]()
     private var images = [UIImage(named: "addBlock"),
@@ -54,23 +63,36 @@ class ViewController: UIViewController {
         SKPaymentQueue.default().add(self)
         fetchProducts()
         view.backgroundColor = .white
+        nextButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
+    }
+    
+    @objc
+    func nextPage() {
+        print("touched")
+        let controller = NextPageViewController()
+        self.show(controller, sender: self)
     }
     
     private func configureConstrains() {
+        view.addSubview(nextButton)
         view.addSubview(tableView)
         view.addSubview(imageAdd)
         view.addSubview(gemsImage)
         view.addSubview(gemsText)
+        nextButton.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(ConstViewController.buttonTop)
+            $0.leading.trailing.equalToSuperview().inset(ConstViewController.gemsBottom)
+            $0.bottom.equalTo(tableView.safeAreaLayoutGuide.snp.top).offset(-ConstViewController.topImage)
+        }
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalTo(nextButton.safeAreaLayoutGuide.snp.bottom).offset(ConstViewController.topImage)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(imageAdd.safeAreaLayoutGuide.snp.top).offset(-ConstViewController.gemsOffset)
         }
         imageAdd.snp.makeConstraints {
             $0.height.width.equalTo(ConstViewController.addsImageSize)
             $0.top.equalTo(tableView.safeAreaLayoutGuide.snp.bottom).offset(ConstViewController.gemsOffset)
             $0.leading.equalToSuperview().inset(ConstViewController.gemsBottom)
-//            $0.leading.trailing.equalToSuperview().inset(ConstViewController.gemsBottom)
-//            $0.bottom.equalToSuperview().inset(100)
         }
         gemsImage.snp.makeConstraints {
             $0.height.width.equalTo(ConstViewController.gemsImageSize)
@@ -113,7 +135,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
         tableView.deselectRow(at: indexPath, animated: true)
         // show purchase
         let payment = SKPayment(product: models[indexPath.row])
-        SKPaymentQueue.default().add(payment )
+        SKPaymentQueue.default().add(payment)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -126,12 +148,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
             self.models = response.products
             self.tableView.reloadData()
         }
-    }
-    
-    enum Product: String, CaseIterable {
-        case removeAds = "com.myapp.remove"
-        case unlockEverything = "com.myapp.everything"
-        case getGems = "com.myapp.gems"
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -154,6 +170,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, SKProducts
                 break
             }
         })
+    }
+    
+    enum Product: String, CaseIterable {
+        case removeAds = "com.myapp.remove"
+        case unlockEverything = "com.myapp.everything"
+        case getGems = "com.myapp.gems"
     }
 }
 

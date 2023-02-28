@@ -12,6 +12,7 @@ enum ConstCells {
     static let topAndLeadCell = 20
     static let sizeImage = 80
 }
+
 protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
